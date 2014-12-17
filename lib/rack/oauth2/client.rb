@@ -55,6 +55,7 @@ module Rack
         client_auth_method = args.first || options[:client_auth_method] || :basic
 
         params[:scope] = Array(options[:scope]).join(' ') if options[:scope].present?
+        params[:nonce] = options[:nonce] if options[:nonce].present?
 
         if secret && client_auth_method == :basic
           cred = ["#{identifier}:#{secret}"].pack('m').tr("\n", '')
